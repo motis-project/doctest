@@ -26,7 +26,7 @@ set(doctest_parts_folder "${CMAKE_CURRENT_SOURCE_DIR}/doctest/parts")
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     # use a special hidden version of the header which directly includes the 2 parts - proper reporting of file/line locations during dev
-    target_include_directories(${PROJECT_NAME} INTERFACE
+    target_include_directories(${PROJECT_NAME} SYSTEM INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/scripts/development_only/>
         $<BUILD_INTERFACE:${doctest_parts_folder}>)
 
@@ -41,7 +41,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 
     add_custom_target(assemble_single_header ALL DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/doctest/doctest.h)
 else()
-    target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/>)
+    target_include_directories(${PROJECT_NAME} SYSTEM INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/>)
 endif()
 
 # hack to support building on XCode 6 and 7 - propagate the definition to everything
