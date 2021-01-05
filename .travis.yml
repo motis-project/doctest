@@ -127,6 +127,15 @@ matrix:
           packages: ["g++-9",   "valgrind", "libc6-dbg", "linux-libc-dev"]
           sources: *apt_sources
 
+    # GCC 10
+    - env: COMPILER=g++-10 HAS_ASAN=true HAS_UBSAN=true HAS_TSAN=true SANITIZER_CXX_FLAGS="-fuse-ld=gold -static-libasan" TSAN_CXX_FLAGS="-ltsan"
+      compiler: gcc
+      sudo: required      # see this issue for more details: https://github.com/travis-ci/travis-ci/issues/9033
+      addons: &gcc10
+        apt:
+          packages: ["g++-10",   "valgrind", "libc6-dbg", "linux-libc-dev"]
+          sources: *apt_sources
+
     # Clang 3.5
     - env: COMPILER=clang++-3.5 HAS_ASAN=true HAS_UBSAN=true # no HAS_TSAN - see errors: https://travis-ci.org/onqtam/doctest/builds/417926743
       addons: &clang35
@@ -220,11 +229,6 @@ matrix:
       osx_image: xcode7.3
       os: osx
 
-    # Xcode 8 Clang
-    - env: COMPILER=clang++ HAS_TSAN=true # no HAS_ASAN - errors since using thread_local even in single-threaded cases - see errors: https://travis-ci.org/onqtam/doctest/builds/417181981
-      osx_image: xcode8
-      os: osx
-
     # Xcode 8.3 Clang
     - env: COMPILER=clang++ HAS_UBSAN=true HAS_TSAN=true # no HAS_ASAN - errors since using thread_local even in single-threaded cases - see errors: https://travis-ci.org/onqtam/doctest/builds/417181981
       osx_image: xcode8.3
@@ -265,6 +269,12 @@ matrix:
 
     # static code analysis
     - env: COMPILER=clang++-4.0 STATIC_CODE_ANALYSIS=true
+
+    # seems to not be present yet: https://travis-ci.org/github/onqtam/doctest/jobs/688097537
+    # GCC 10
+    - env: COMPILER=g++-10 HAS_ASAN=true HAS_UBSAN=true HAS_TSAN=true SANITIZER_CXX_FLAGS="-fuse-ld=gold -static-libasan" TSAN_CXX_FLAGS="-ltsan"
+      compiler: gcc
+      sudo: required
 
 install:
   - if [[ "${CODE_COVERAGE}" == "true" ]]; then gem install coveralls-lcov ; fi
