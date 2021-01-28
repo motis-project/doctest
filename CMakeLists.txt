@@ -59,9 +59,7 @@ if(DEFINED DOCTEST_THREAD_LOCAL)
         DOCTEST_THREAD_LOCAL=${DOCTEST_THREAD_LOCAL})
 endif()
 
-if(DOCTEST_USE_STD_HEADERS)
-    target_compile_definitions(${PROJECT_NAME} INTERFACE DOCTEST_CONFIG_USE_STD_HEADERS)
-endif()
+target_compile_definitions(${PROJECT_NAME} INTERFACE DOCTEST_CONFIG_USE_STD_HEADERS)
 
 ################################################################################
 ## TESTS/EXAMPLES/HELPERS
