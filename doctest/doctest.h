@@ -394,7 +394,7 @@ DOCTEST_GCC_SUPPRESS_WARNING_POP
 #ifndef DOCTEST_CONFIG_INCLUDE_TYPE_TRAITS
 #define DOCTEST_CONFIG_INCLUDE_TYPE_TRAITS
 #endif // DOCTEST_CONFIG_INCLUDE_TYPE_TRAITS
-#include <iosfwd>
+#include <iostream>
 #include <cstddef>
 #include <ostream>
 #else // DOCTEST_CONFIG_USE_STD_HEADERS
