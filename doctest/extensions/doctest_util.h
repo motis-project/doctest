@@ -1,14 +1,14 @@
 //
 // doctest_util.h - an accompanying extensions header to the main doctest.h header
 //
-// Copyright (c) 2016-2020 Viktor Kirilov
+// Copyright (c) 2016-2021 Viktor Kirilov
 //
 // Distributed under the MIT Software License
 // See accompanying file LICENSE.txt or copy at
 // https://opensource.org/licenses/MIT
 //
 // The documentation can be found at the library's page:
-// https://github.com/onqtam/doctest/blob/master/doc/markdown/readme.md
+// https://github.com/doctest/doctest/blob/master/doc/markdown/readme.md
 //
 
 #pragma once
